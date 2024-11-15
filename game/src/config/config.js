@@ -15,4 +15,10 @@ export const config = {
     sequenceLength: SEQUENCE_LENGTH,
     payloadLength: PAYLOAD_LENGTH,
   },
+  globalFailCode: {
+    NONE: 0,
+    UNKNOWN_ERROR: 1,
+    INVALID_REQUEST: 2,
+    AUTHENTICATION_FAILED: 3,
+  },
 };
