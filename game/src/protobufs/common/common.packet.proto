@@ -8,5 +8,6 @@ message GamePacket {
     S2C_MoveNotification moveNotification = 2;
     C2S_ConnectGameRequest connectGameRequest = 3;
     S2C_ConnectGameNotification connectGameNotification = 4;
+    S2C_ConnectNotification connectNotification = 5;
   }
 }

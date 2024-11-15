@@ -4,6 +4,7 @@ package auth;
 
 message C2S_ConnectGameRequest {
   uint32 playerId = 1;
+  string token = 2;
 }
 
 message S2C_ConnectGameNotification {
@@ -13,3 +14,6 @@ message S2C_ConnectGameNotification {
   string message = 4;
 }
 
+message S2C_ConnectNotification {
+  string token = 1;
+}

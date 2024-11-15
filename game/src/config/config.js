@@ -1,4 +1,10 @@
-import { CLIENT_VERSION, HOST, PORT, UDP_PORT } from "../constants/env.js";
+import { CLIENT_VERSION, HOST, PORT, UDP_PORT } from '../constants/env.js';
+import {
+  PACKET_TYPE_LENGTH,
+  PAYLOAD_LENGTH,
+  SEQUENCE_LENGTH,
+  VERSION_LENGTH,
+} from '../constants/haeader.js';
 
 export const config = {
   server: {
