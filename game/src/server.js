@@ -1,12 +1,12 @@
-import initServer from "./init/index.js";
-import net from "net";
-import { onConnection } from "./events/onConnection.js";
-import { TCP_PORT, TCP_HOST, UDP_PORT } from "./constants/env.js";
-import dgram from "dgram";
+import initServer from './init/index.js';
+import net from 'net';
+import { onConnection } from './events/onConnection.js';
+import { TCP_PORT, TCP_HOST, UDP_PORT } from './constants/env.js';
+import dgram from 'dgram';
 
-const udpServer = dgram.createSocket("udp4");
+const udpServer = dgram.createSocket('udp4');
 
-udpServer.on("message", (msg, rinfo) => {
+udpServer.on('message', (msg, rinfo) => {
   console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
   udpServer.send();
 });
