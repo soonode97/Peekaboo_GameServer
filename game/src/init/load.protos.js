@@ -8,8 +8,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const protoDir = path.join(__dirname, '../protobufs');
 
-export const getAllprotoFiles = (dir, fileList = []) => {
-  const files = fs.readFileSync(dir);
+export const getAllProtoFiles = (dir, fileList = []) => {
+  const files = fs.readdirSync(dir);
 
   files.forEach((file) => {
     const filePath = path.join(dir, file);
@@ -39,7 +39,7 @@ export const loadProtos = async () => {
     await Promise.all(protoFiles.map((file) => root.load(file)));
 
     for (const [packageName, types] of Object.entries(packetNames)) {
-      console.log(packageName, types);
+      // console.log(packageName, types);
       protoMessages[packageName] = {};
       for (const [type, typeName] of Object.entries(types)) {
         protoMessages[packageName][type] = root.lookupType(typeName);
