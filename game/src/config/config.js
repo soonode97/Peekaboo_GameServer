@@ -5,6 +5,7 @@ import {
   REDIS_PORT,
   TCP_HOST,
   TCP_PORT,
+  Test_Token,
   UDP_PORT,
 } from '../constants/env.js';
 import {
@@ -39,5 +40,8 @@ export const config = {
     host: REDIS_HOST,
     port: REDIS_PORT,
     password: REDIS_PASSWORD,
+  },
+  test: {
+    test_token: Test_Token,
   },
 };
