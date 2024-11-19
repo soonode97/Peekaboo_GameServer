@@ -1,4 +1,13 @@
-import { CLIENT_VERSION, HOST, PORT, UDP_PORT } from '../constants/env.js';
+import {
+  CLIENT_VERSION,
+  REDIS_HOST,
+  REDIS_PASSWORD,
+  REDIS_PORT,
+  TCP_HOST,
+  TCP_PORT,
+  Test_Token,
+  UDP_PORT,
+} from '../constants/env.js';
 import {
   PACKET_TYPE_LENGTH,
   PAYLOAD_LENGTH,
@@ -8,9 +17,9 @@ import {
 
 export const config = {
   server: {
-    port: PORT,
+    tcpPort: TCP_PORT,
     udpPort: UDP_PORT,
-    host: HOST,
+    tcpHost: TCP_HOST,
   },
   client: {
     clientVersion: CLIENT_VERSION,
@@ -26,5 +35,13 @@ export const config = {
     UNKNOWN_ERROR: 1,
     INVALID_REQUEST: 2,
     AUTHENTICATION_FAILED: 3,
+  },
+  redis: {
+    host: REDIS_HOST,
+    port: REDIS_PORT,
+    password: REDIS_PASSWORD,
+  },
+  test: {
+    test_token: Test_Token,
   },
 };

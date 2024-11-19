@@ -36,7 +36,7 @@ message PlayerLocationData {
 message InitGameData {
   repeated Ghost ghosts = 1;
   repeated Player players = 2;
-  Map mapId = 3;
+  uint32 mapId = 3;
 }
 
 message C2S_MoveRequest {

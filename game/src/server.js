@@ -1,8 +1,8 @@
 import initServer from './init/index.js';
 import net from 'net';
 import { onConnection } from './events/onConnection.js';
-import { TCP_PORT, TCP_HOST, UDP_PORT } from './constants/env.js';
 import dgram from 'dgram';
+import { config } from './config/config.js';
 
 const udpServer = dgram.createSocket('udp4');
 
@@ -11,16 +11,16 @@ udpServer.on('message', (msg, rinfo) => {
   udpServer.send();
 });
 
-udpServer.bind(UDP_PORT, () => {
-  console.log(`udp서버가 포트 ${UDP_PORT}에서 대기 중`);
+udpServer.bind(config.server.udpPort, () => {
+  console.log(`udp서버가 포트 ${config.server.udpPort}에서 대기 중`);
   console.log(udpServer.address());
 });
 
 const tcpServer = net.createServer(onConnection);
 initServer()
   .then(() => {
-    tcpServer.listen(TCP_PORT, TCP_HOST, () => {
-      console.log(`tcp서버가 포트 ${TCP_PORT}에서 대기 중`);
+    tcpServer.listen(config.server.tcpPort, config.server.tcpHost, () => {
+      console.log(`tcp서버가 포트 ${config.server.tcpPort}에서 대기 중`);
       console.log(tcpServer.address());
     });
   })
