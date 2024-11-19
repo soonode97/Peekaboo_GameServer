@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+enum GlobalFailCode {
+    NONE = 0;
+    UNKNOWN_ERROR = 1;
+    INVALID_REQUEST = 2;
+    AUTHENTICATION_FAILED = 3;
+}
+
+enum UserState {
+    STAY = 0;
+    INGAME = 1;
+}
+
+enum GameSessionState {
+    PREPARE = 0;
+    INPROGRESS = 1;
+    END = 2;
+}
+
+enum CharacterState {
+    IDLE = 0;
+    WALK = 1;
+    SPRINT = 2;
+    JUMP = 3;
+    DIED = 4;
+}
+
+message Position {
+  float position_x = 1;
+  float position_y = 2;
+  float position_z = 3;
+}
+
+message Rotation {
+  float rotation_x = 1;
+  float rotation_y = 2;
+  float rotation_z = 3;
+}
+
+message MoveInfo {
+  Position position = 1;
+  Rotation rotation = 2;
+  CharacterState characterState = 3;
+}
+
+message Player {
+  uint32 playerId = 1;
+  MoveInfo moveInfo = 2;
+  bool isHost = 3;
+}
+
+message PlayerMoveInfo {
+  uint32 playerId = 1;
+  MoveInfo moveInfo = 2;
+}
+
+message Ghost {
+  uint32 ghostId = 1;
+  uint32 ghostTypeId = 2;
+  MoveInfo moveInfo = 3;
+}
+
+message GhostMoveInfo {
+  uint32 ghostId = 1;
+  MoveInfo moveInfo = 2;
+}
+
+message S2C_ConnectResponse {
+  string token = 1;
+}
+
+message C2S_PlayerMoveRequest {
+  PlayerMoveInfo playerMoveInfo = 1;
+}
+
+message S2C_PlayerMoveNotification {
+  repeated PlayerMoveInfo playerMoveInfos = 1;
+}
+
+message C2S_GhostMoveRequest {
+  repeated GhostMoveInfo ghostMoveInfos = 1;
+}
+
+message S2C_GhostMoveNotification {
+  repeated GhostMoveInfo ghostMoveInfos =1;
+}
+
+message C2S_ConnectGameRequest {
+  uint32 userId =1;
+  string token =2;
+}
+
+message S2C_ConnectGameResponse {
+  uint32 gameId = 1;
+  uint32 hostId = 2;
+  repeated uint32 ghostTypeIds = 3;
+  GlobalFailCode globalFailCode = 4;
+  UserState userState = 5; 
+  GameSessionState gameSessionState = 6;
+  string message = 7;
+}
+
+message C2S_SpawnInitialGhostRequest {
+  repeated Ghost ghosts =1;
+}
+
+message S2C_StartGameNotification {
+  uint32 mapId =1;
+  GameSessionState gameSessionState = 2;
+}

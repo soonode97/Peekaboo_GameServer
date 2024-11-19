@@ -1,15 +1,20 @@
-import Position from './position.class.js';
-
-let ghostId = 1; //
+import { Position, Rotation } from './moveInfo.class.js';
 
 class Ghost {
-  constructor() {
-    this.id = this.getGhostId(); // 많이 있어봤자 한게임에 5마리 정도로 생각
-    this.position = new Position();
-  }
-
-  getGhostId() {
-    return ghostId++;
+  constructor(id, ghostTypeId, position, rotation, state) {
+    this.id = id;
+    this.ghostTypeId = ghostTypeId;
+    this.position = new Position(
+      position.position_x,
+      position.position_y,
+      position.position_z,
+    );
+    this.rotation = new Rotation(
+      rotation.rotation_x,
+      rotation.rotation_y,
+      rotation.rotation_z,
+    );
+    this.state = state;
   }
 }
 

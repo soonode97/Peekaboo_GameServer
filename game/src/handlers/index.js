@@ -1,15 +1,27 @@
-import { PACKET_TYPE } from '../../constants/haeader.js';
-import { connectGameRequestHandler } from './auth/auth.handler.js';
-import { moveRequestHandler } from './game/game.handler.js';
+import {
+  connectGameRequestHandler,
+  spawnInitialGhostRequestHandler,
+} from './auth/connectGame.handler.js';
+import { movePlayerRequestHandler } from './game/movePlayer.handler.js';
+import { moveGhostRequestHandler } from './game/moveGhost.handler.js';
+import { PACKET_TYPE } from '../constants/header.js';
 
 const handlers = {
   [PACKET_TYPE.ConnectGameRequest]: {
     handler: connectGameRequestHandler,
-    protoType: 'auth.C2S_ConnectGameRequest',
+    protoType: 'common.GamePacket',
   },
-  [PACKET_TYPE.MoveRequest]: {
-    handler: moveRequestHandler,
-    protoType: 'gameData.C2S_MoveRequest',
+  [PACKET_TYPE.PlayerMoveRequest]: {
+    handler: movePlayerRequestHandler,
+    protoType: 'common.GamePacket',
+  },
+  [PACKET_TYPE.GhostMoveRequest]: {
+    handler: moveGhostRequestHandler,
+    protoType: 'common.GamePacket',
+  },
+  [PACKET_TYPE.SpawnInitialGhostRequest]: {
+    handler: spawnInitialGhostRequestHandler,
+    protoType: 'common.GamePacket',
   },
 };
 
@@ -27,12 +39,4 @@ export const getProtoTypeByPacketType = (packetType) => {
   }
 
   return handlers[packetType].protoType;
-};
-
-export const getProtoPayloadTypeByPacketType = (packetType) => {
-  if (!handlers[packetType]) {
-    return false;
-  }
-
-  return handlers[packetType].protoPayloadType;
 };
