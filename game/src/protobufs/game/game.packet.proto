@@ -1,49 +1,46 @@
 syntax = "proto3";
 
-package gameData;
+import "./game.data.proto";
+import "../global/enum.global.proto";
 
-message Position {
-  float x = 1;
-  float y = 2;
-  float z = 3;
+package gamePacket;
+
+message C2S_PlayerMoveRequest {
+  PlayerMoveInfo playerMoveInfo = 1;
 }
 
-message Player {
-  uint32 playerId = 1;
-  Position position = 2;
+message S2C_PlayerMoveNotification {
+  repeated PlayerMoveInfo playerMoveInfos = 1;
 }
 
-message Ghost {
-  uint32 ghostId = 1;
-  Position position = 2;
+message C2S_GhostMoveRequest {
+  repeateGhostMoveInfo ghostMoveInfos = 1;
 }
 
-message LocationUpdate {
-  repeated GhostLocationData ghostLocations = 1;
-  repeated PlayerLocationData playerLocations = 2;
+message S2C_GhostMoveNotification {
+  repeated GhostMoveInfo ghostMoveInfos =1;
 }
 
-message GhostLocationData {
-  uint32 ghostId = 1;
-  Position position = 2;
+message C2S_ConnectGameRequest {
+  uint32 userId =1;
+  string token =2;
 }
 
-message PlayerLocationData {
-  uint32 playerId = 1;
-  Position position = 2;
+message S2C_ConnectGameResponse {
+  uint32 gameId = 1;
+  uint32 hostId = 2;
+  repeated uint32 ghostTypeIds = 3;
+  GlobalFailCode globalFailCode = 4;
+  UserState userState = 5; 
+  GameSessionState gameSessionState = 6;
+  string message = 7;
 }
 
-message InitGameData {
-  repeated Ghost ghosts = 1;
-  repeated Player players = 2;
-  uint32 mapId = 3;
+message C2S_SpawnInitialGhostRequest {
+  repeated Ghost ghosts =1;
 }
 
-message C2S_MoveRequest {
-  uint32 playerId = 1;
-  Position position = 2;
-}
-
-message S2C_MoveNotification {
-  LocationUpdate locationUpdate = 2;
+message S2C_StartGameNotification {
+  uint32 mapId =1;
+  GameSessionState gameSessionState = 2;
 }

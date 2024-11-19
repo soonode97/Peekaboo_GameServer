@@ -26,12 +26,14 @@ export const serializer = (packetType, payloadData = {}, sequence) => {
   const sequenceBuffer = Buffer.alloc(config.packet.sequenceLength);
   sequenceBuffer.writeUInt32BE(sequence);
 
-  // payload
+  // game packet
   const protoMessages = getProtoMessages();
-  const gamePacket = protoMessages.common.GamePacket;
-  const responsePayload = {};
-  responsePayload[PACKET_MAPS[packetType]] = payloadData;
-  const payloadBuffer = gamePacket.encode(responsePayload).finish();
+  const gamePacketStructure = protoMessages.common.GamePacket;
+
+  // payload
+  const oneOfPayloadData = {};
+  oneOfPayloadData[PACKET_MAPS[packetType]] = payloadData;
+  const payloadBuffer = gamePacketStructure.encode(oneOfPayloadData).finish();
 
   // payload length
   const payloadLengthBuffer = Buffer.alloc(config.packet.payloadLength);

@@ -13,7 +13,8 @@ import {
   PAYLOAD_LENGTH,
   SEQUENCE_LENGTH,
   VERSION_LENGTH,
-} from '../constants/haeader.js';
+} from '../constants/header.js';
+import { MAX_PLAYER, MAX_PLAYER_HP, MAX_GHOST_NUM } from '../constants/game.js';
 
 export const config = {
   server: {
@@ -30,12 +31,6 @@ export const config = {
     sequenceLength: SEQUENCE_LENGTH,
     payloadLength: PAYLOAD_LENGTH,
   },
-  globalFailCode: {
-    NONE: 0,
-    UNKNOWN_ERROR: 1,
-    INVALID_REQUEST: 2,
-    AUTHENTICATION_FAILED: 3,
-  },
   redis: {
     host: REDIS_HOST,
     port: REDIS_PORT,
@@ -43,5 +38,10 @@ export const config = {
   },
   test: {
     test_token: Test_Token,
+  },
+  game: {
+    max_player: MAX_PLAYER,
+    max_player_hp: MAX_PLAYER_HP,
+    max_ghost_num: MAX_GHOST_NUM,
   },
 };
