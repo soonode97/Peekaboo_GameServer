@@ -9,6 +9,8 @@ export const PACKET_TYPE = {
   PlayerMoveNotification: 2,
   GhostMoveRequest: 3,
   GhostMoveNotification: 4,
+  PingRequest: 5, // S2C
+  PingResponse: 6, // C2S
   ConnectResponse: 16,
   ConnectGameRequest: 17,
   ConnectGameResponse: 18,

@@ -14,11 +14,11 @@ message S2C_PlayerMoveNotification {
 }
 
 message C2S_GhostMoveRequest {
-  repeate GhostMoveInfo ghostMoveInfos = 1;
+  repeated GhostMoveInfo ghostMoveInfos = 1;
 }
 
 message S2C_GhostMoveNotification {
-  repeated GhostMoveInfo ghostMoveInfos =1;
+  repeated GhostMoveInfo ghostMoveInfos = 1;
 }
 
 message C2S_ConnectGameRequest {
