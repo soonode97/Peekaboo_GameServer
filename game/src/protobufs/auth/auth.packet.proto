@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package auth;
 
+import '../global/enum.global.proto';
+
 message S2C_ConnectResponse {
   string token = 1;
+  GlobalFailCode globalFailCode = 2;
 }

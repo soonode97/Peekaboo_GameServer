@@ -14,7 +14,7 @@ message S2C_PlayerMoveNotification {
 }
 
 message C2S_GhostMoveRequest {
-  repeateGhostMoveInfo ghostMoveInfos = 1;
+  repeate GhostMoveInfo ghostMoveInfos = 1;
 }
 
 message S2C_GhostMoveNotification {
