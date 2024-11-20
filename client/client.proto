@@ -2,7 +2,7 @@ syntax = "proto3";
 
 enum GlobalFailCode {
     NONE = 0;
-    UNKNOWN_ERROR = 1;
+    UNKNOWN = 1;
     INVALID_REQUEST = 2;
     AUTHENTICATION_FAILED = 3;
 }
@@ -45,14 +45,14 @@ message MoveInfo {
 }
 
 message Player {
-  uint32 playerId = 1;
+  uint32 userId = 1;
   MoveInfo moveInfo = 2;
   bool isHost = 3;
 }
 
 message PlayerMoveInfo {
-  uint32 playerId = 1;
-  MoveInfo moveInfo = 2;
+  uint32 userId = 1;
+  MoveInfo moveInfo =2;
 }
 
 message Ghost {
@@ -68,6 +68,7 @@ message GhostMoveInfo {
 
 message S2C_ConnectResponse {
   string token = 1;
+  GlobalFailCode globalFailCode = 2;
 }
 
 message C2S_PlayerMoveRequest {
@@ -79,7 +80,7 @@ message S2C_PlayerMoveNotification {
 }
 
 message C2S_GhostMoveRequest {
-  repeated GhostMoveInfo ghostMoveInfos = 1;
+  repeate GhostMoveInfo ghostMoveInfos = 1;
 }
 
 message S2C_GhostMoveNotification {
@@ -108,4 +109,18 @@ message C2S_SpawnInitialGhostRequest {
 message S2C_StartGameNotification {
   uint32 mapId =1;
   GameSessionState gameSessionState = 2;
+}
+
+message GamePacket {
+  oneof payload {
+    C2S_PlayerMoveRequest playerMoveRequest = 1;
+    S2C_PlayerMoveNotification playerMoveNotification = 2;
+    C2S_GhostMoveRequest ghostMoveRequest = 3;
+    S2C_GhostMoveNotification ghostMoveNotification = 4;
+    S2C_ConnectResponse connectResponse = 16;
+    C2S_ConnectGameRequest connectGameRequest = 17;
+    S2C_ConnectGameResponse connectGameResponse = 18;
+    C2S_SpawnInitialGhostRequest spawnInitialGhostRequest = 19;
+    S2C_StartGameNotification startGameNotification = 20;
+  }
 }

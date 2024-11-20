@@ -21,13 +21,13 @@ message MoveInfo {
 }
 
 message Player {
-  uint32 playerId = 1;
+  uint32 userId = 1;
   MoveInfo moveInfo = 2;
   bool isHost = 3;
 }
 
 message PlayerMoveInfo {
-  uint32 playerId = 1;
+  uint32 userId = 1;
   MoveInfo moveInfo =2;
 }
 
@@ -40,33 +40,4 @@ message Ghost {
 message GhostMoveInfo {
   uint32 ghostId = 1;
   MoveInfo moveInfo = 2;
-}
-
-// ----
-message C2S_PlayerMoveRequest {
-  uint32 playerId = 1;
-  Position position = 2;
-}
-
-message S2C_PlayerMoveNotification {
-  repeated PlayerLocationData playerLocations = 1;
-
-  message PlayerLocationData {
-    uint32 playerId = 1;
-    Position position = 2;
-  }
-}
-
-message C2S_GhostMoveRequest {
-  uint32 ghostId = 1;
-  Position position = 2;
-}
-
-message S2C_GhostMoveNotification {
-  repeated GhostLocationData ghostLocations = 1;
-
-  message GhostLocationData {
-    uint32 ghostId = 1;
-    Position position = 2;
-  }
 }
