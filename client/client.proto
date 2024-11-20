@@ -66,11 +66,6 @@ message GhostMoveInfo {
   MoveInfo moveInfo = 2;
 }
 
-message S2C_ConnectResponse {
-  string token = 1;
-  GlobalFailCode globalFailCode = 2;
-}
-
 message C2S_PlayerMoveRequest {
   PlayerMoveInfo playerMoveInfo = 1;
 }
@@ -80,11 +75,11 @@ message S2C_PlayerMoveNotification {
 }
 
 message C2S_GhostMoveRequest {
-  repeate GhostMoveInfo ghostMoveInfos = 1;
+  repeated GhostMoveInfo ghostMoveInfos = 1;
 }
 
 message S2C_GhostMoveNotification {
-  repeated GhostMoveInfo ghostMoveInfos =1;
+  repeated GhostMoveInfo ghostMoveInfos = 1;
 }
 
 message C2S_ConnectGameRequest {
@@ -111,12 +106,22 @@ message S2C_StartGameNotification {
   GameSessionState gameSessionState = 2;
 }
 
+message S2C_PingRequest {
+  int64 timestamp = 1;
+}
+
+message C2S_PingResponse {
+  int64 timestamp = 1;
+}
+
 message GamePacket {
   oneof payload {
     C2S_PlayerMoveRequest playerMoveRequest = 1;
     S2C_PlayerMoveNotification playerMoveNotification = 2;
     C2S_GhostMoveRequest ghostMoveRequest = 3;
     S2C_GhostMoveNotification ghostMoveNotification = 4;
+    S2C_PingRequest pingRequest = 5;
+    C2S_PingResponse pingResponse = 6;
     S2C_ConnectResponse connectResponse = 16;
     C2S_ConnectGameRequest connectGameRequest = 17;
     S2C_ConnectGameResponse connectGameResponse = 18;

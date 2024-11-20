@@ -11,6 +11,8 @@ export const PACKET_MAPS = {
   [PACKET_TYPE.PlayerMoveNotification]: 'playerMoveNotification',
   [PACKET_TYPE.GhostMoveRequest]: 'ghostMoveRequest',
   [PACKET_TYPE.GhostMoveNotification]: 'ghostMoveNotification',
+  [PACKET_TYPE.PingRequest]: 'pingRequest', // S2C
+  [PACKET_TYPE.PingResponse]: 'pingResponse', // C2S
   [PACKET_TYPE.ConnectResponse]: 'connectResponse',
   [PACKET_TYPE.ConnectGameRequest]: 'connectGameRequest',
   [PACKET_TYPE.ConnectGameResponse]: 'connectGameResponse',

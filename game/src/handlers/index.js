@@ -5,6 +5,7 @@ import {
 import { movePlayerRequestHandler } from './game/movePlayer.handler.js';
 import { moveGhostRequestHandler } from './game/moveGhost.handler.js';
 import { PACKET_TYPE } from '../constants/header.js';
+import { pingHandler } from './game/ping.handler.js';
 
 const handlers = {
   [PACKET_TYPE.ConnectGameRequest]: {
@@ -23,6 +24,10 @@ const handlers = {
     handler: spawnInitialGhostRequestHandler,
     protoType: 'common.GamePacket',
   },
+  [PACKET_TYPE.PingResponse]: {
+    handler: pingHandler,
+    protoType: 'common.GamePacket',
+  }
 };
 
 export const getHandlerByPacketType = (packetType) => {
