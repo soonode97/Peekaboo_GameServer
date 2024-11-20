@@ -8,6 +8,8 @@ message GamePacket {
     S2C_PlayerMoveNotification playerMoveNotification = 2;
     C2S_GhostMoveRequest ghostMoveRequest = 3;
     S2C_GhostMoveNotification ghostMoveNotification = 4;
+    S2C_PingRequest pingRequest = 5;
+    C2S_PingResponse pingResponse = 6;
     S2C_ConnectResponse connectResponse = 16;
     C2S_ConnectGameRequest connectGameRequest = 17;
     S2C_ConnectGameResponse connectGameResponse = 18;
